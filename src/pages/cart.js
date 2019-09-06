@@ -37,6 +37,16 @@ const ConfirmBuy = () =>{
     updateTest("test")
     updateCart([])
 }
+console.log(cart$.value.length)
+if (cart$.value.length === 0){
+    return(
+        <>
+        <Header/>
+        <Meny/>
+        <div>Cart is Empty!!</div>
+        </>
+    )
+}
     return(
         <>
         <Header/>

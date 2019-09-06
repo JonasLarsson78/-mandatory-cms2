@@ -12,7 +12,7 @@ const Start = () => {
     return(
         <HelmetProvider>
             <Helmet>
-                <title>Blog CMS</title>
+                <title>WebShop</title>
             </Helmet>
             <Header/>
             <Meny/>
