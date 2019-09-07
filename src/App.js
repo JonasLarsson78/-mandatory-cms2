@@ -6,7 +6,11 @@ import Shop from './pages/shop.js';
 import Product from './pages/product.js';
 import Cart from './pages/cart.js';
 import Done from './pages/done.js';
+import Send from './components/send.js'
+import Contact from './pages/contact.js'
+import About from './pages/about.js';
 import './App.css';
+
 
 
 
@@ -18,6 +22,9 @@ function App() {
       <Route path="/product/:id" component={Product}/>
       <Route path="/cart/" component={Cart}/>
       <Route path="/done/" component={Done}/>
+      <Route path="/send/" component={Send}/>
+      <Route path="/contact/" component={Contact}/>
+      <Route path="/about/" component={About}/>
     </Router>
   );
 }

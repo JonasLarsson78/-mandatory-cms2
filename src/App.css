@@ -1,12 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+body{
+  font-family: 'Lato', sans-serif;
+}
+
 .header{
   width: 100%;
   height: 150px;
-  background: lightgray;
+  background: #df5151;
+  background-image: url("./img/banner-pizza.jpg");
+  background-size: 100%;
+  background-position-y: 150px;
 }
 .meny{
   width: 100%;
   height: 50px;
-  background: darkgray;
+  padding-left: 80px;
+  background: #db3131;
 }
 .menyButton{
   margin-top: 10px;
@@ -16,12 +27,87 @@
   border: none;
   cursor: pointer;
   outline: none;
+  color: white;
+  font-family: 'Lobster', cursive;
+  font-size: 20px;
+  border-radius: 10px;
 }
 .menyButton:hover{
-  background: lightgray;
+  background: #df5151;
 }
 .productList{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+.rev{
+  width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+.pizzaLink a{
+  text-decoration: none;
+  color: black;
+}
+.pizzaLink a:hover{
+  color: #db3131;
+}
+.navBtn{
+  width: 100px;
+  height: 25px;
+  margin: 3px;
+  border: none;
+  background: #db3131;
+  color: white;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+.navBtn:hover{
+  background: #df5151;
+}
+.navBtn:disabled{
+  background: lightgray;
+}
+/* Style Rating Stars */
+.is-active-half::before{
+  color: #ffb400 !important;
+  -webkit-text-stroke: 1px #000000;
+}
+.is-active{
+  color: #ffb400 !important;
+  -webkit-text-stroke: 1px #000000;
+}
+.react-rater-star{
+  color: #494949;
+  -webkit-text-stroke: 1px #000000;
+}
+.commentBtn{
+  background: #3737fd;
+  color: white;
+  border-radius: 3px;
+  outline: none;
+  width: 150px;
+  height: 25px;
+  margin: 3px;
+  border: none;
+  cursor: pointer;
+}
+.commentBtn:hover{
+  background: #5c5cfa;
+}
+.buyBtn{
+  width: 60px;
+  height: 25px;
+  margin: 3px;
+  border: none;
+  background: #1ac932;
+  color: white;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+.buyBtn:hover{
+  background: #46c557;
 }

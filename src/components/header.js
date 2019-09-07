@@ -8,7 +8,7 @@ const Header = () => {
     return(
         
             <div className="header">
-            Header
+            <img style={{width: "180px", marginLeft: "80px"}} src={require("../img/pizza_logo.png")}/>
             </div>
         
     );

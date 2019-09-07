@@ -7,18 +7,44 @@ import {API} from './api.js';
 
 const ShopList = (props) => {
 
-    const page =  props.page * 14;
+    const page =  props.page * 10;
 
     const [productList, updateProductlist] = useState([]);
+    const [max, updateMax] = useState(null);
+
     const nextList = useRef(null);
     const prevList = useRef(null);
 
+    useEffect(() => {
+
+        axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN)
+        .then(response => {
+           updateMax(response.data.entries.length);
+       })
+      }, [max]);
+
     
    useEffect(() => {
+    console.log(page)
+    if(page === 0){
+        prevList.current.disabled = "disabled";
+    }
+    else{
+        prevList.current.disabled = "";
+    }
        
-        axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + "&limit=14&skip=" + page)
+        axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + "&limit=10&skip=" + page + "&sort[price]=1")
         .then(response => {
-           updateProductlist(response.data.entries)
+            const length = response.data.entries.length;
+           updateProductlist(response.data.entries);
+           if (max === page + length){
+            nextList.current.disabled = "disabled";
+            nextList.current.innerHTML = "End";
+           }
+           else{
+            nextList.current.disabled = "";
+            nextList.current.innerHTML = "Next Page";
+           }
         })
       }, [page]);
 
@@ -36,10 +62,10 @@ const renderShop = (data) => {
         <table style={{padding: "20px"}} key={data._id}>
             <tbody>
                 <tr>
-                    <td><img alt="img" style={{width: "150px",border: "1px solid gray"}} src={img}/></td>
+                    <td><img alt="img" style={{width: "220px",border: "1px solid gray", borderRadius: "3px"}} src={img}/></td>
                 </tr>
                 <tr>
-                    <td><Link to={"/product/" + data._id}>{data.name}</Link></td>
+                    <td className="pizzaLink"><Link to={"/product/" + data._id}>{data.name}</Link></td>
                 </tr>
                 <tr>
                     <td>{data.price} Kr</td>
@@ -57,7 +83,7 @@ const renderShop = (data) => {
     const search = (e) =>{
         let input = e.target.value;
         if (!input){
-            axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + "&limit=14&skip=" + page)
+            axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + "&limit=10&skip=" + page)
         .then(response => {
            updateProductlist(response.data.entries)
         })
@@ -73,14 +99,14 @@ const renderShop = (data) => {
 
     return(
         <>
-            <input onChange={search} placeholder="Search..." style={{height: "20px",width: "150px",marginTop: "20px", marginLeft: "80px"}} type="text"/>
+            <input onChange={search} placeholder="Search..." style={{height: "20px",width: "150px",marginTop: "20px", marginLeft: "105px", outline: "none",border: "1px solid black", borderRadius: "3px"}} type="text"/>
             <div className="productList">
                 {data}
             </div>
-            <br/><br/>
+            
             <div style={{textAlign: "center"}}>
-                <Link to={"/shop/" + prev} ><button ref={prevList}>Prev Page</button></Link>
-                <Link to={"/shop/" + next} ><button ref={nextList}>Next Page</button></Link>
+                <Link to={"/shop/" + prev} ><button className="navBtn" ref={prevList}>Prev Page</button></Link>
+                <Link to={"/shop/" + next} ><button className="navBtn" ref={nextList}>Next Page</button></Link>
             </div>
         </>
     );
