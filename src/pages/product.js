@@ -6,6 +6,7 @@ import Header from '../components/header.js';
 import Comments from '../components/comments.js';
 
 
+
 import {API} from '../components/api.js';
 
 const Product = (props) => {

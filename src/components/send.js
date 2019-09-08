@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import axios from 'axios';
 import Meny from '../components/meny.js';
 import Header from '../components/header.js';
+import Rater from 'react-rater';
+
 
 
 import {API} from './api.js';
@@ -9,7 +11,8 @@ import {API} from './api.js';
 const SendComments = (props) =>{
 const [textInput, updateTextInput] = useState("");
 const [textareaInput, updateTextareaInput] = useState("");
-const [rateInput, updateRateInput] = useState(0);
+const [rateInput, updateRateInput] = useState(5);
+const send = useRef(null);
     
 const product = props.location.state.product;
 
@@ -41,16 +44,49 @@ const rate = (e) => {
 const goBack = () => {
     window.history.back();
   }
+  let sendBtn;
+  if (!textInput || !textareaInput){
+    sendBtn = <button ref={send} className="navBtn" onClick={sendRev} disabled="disabled">Send</button>
+}
+else{
+    sendBtn = <button ref={send} className="navBtn" onClick={sendRev}>Send</button>
+}
+  
 
     return(
         <>
         <Header/>
         <Meny/>
-        <input onChange={text} type="text"/><br/>
-        <textarea onChange={textarea}></textarea><br/>
-        <input onChange={rate} type="range" step="1" min="0" max="5"/><br/>
-        <button onClick={sendRev}>Send</button><br/>
-        <button onClick={goBack}>Back</button>
+        <center>
+            <table style={{width: "700px"}}>
+                <tbody>
+                    <tr>
+                        <td><h2>Comment:</h2></td>
+                    </tr>
+                    <tr>
+                        <td><label>Title:</label><br/><input style={{width: "100%", outline: "none"}} onChange={text} type="text"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>Comment:</label><br/><textarea style={{width: "100%", height: "200px", outline: "none"}} onChange={textarea}></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><input style={{width: "100%"}} onChange={rate} type="range" step="1" min="0" max="5"/><center><Rater style={{display: "flex", justifyContent: "center"}} total={5} interactive={false} rating={rateInput}/></center></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {sendBtn}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/><br/><br/><br/>
+            <button className="navBtn" onClick={goBack}>Back</button>
+        </center>
+        
+        
+        
+        
+        
         </>
     )
 }

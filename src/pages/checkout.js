@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {cart$, updateCart} from '../components/store.js';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import {API} from '../components/api.js';
 
 import Meny from '../components/meny.js';
 import Header from '../components/header.js';
@@ -8,9 +10,14 @@ import Header from '../components/header.js';
 
 
 
-const Cart = () => {
+const Checkout = () => {
     
     let total = 0;
+    const [, updateTest] = useState("");
+    const [name, updateName] = useState("");
+    const [adress, updateAdress] = useState("");
+
+
     
     const renderCart = (data, index) => {
         let sum = Number(data.value.price) * Number(data.value.aumont);
@@ -32,9 +39,38 @@ const Cart = () => {
     
 let data = cart$.value.map(renderCart);
 
-const emptyCart = () => {
-    updateCart([]);
-}    
+let order = {
+    name: name,
+    adress: adress,
+    total_price: total,
+    list: cart$.value
+
+    
+};
+const ConfirmBuy = () =>{
+    axios.post(API.API_ROOT + API.URL_ORDER_POST + API.TOKEN, {data: order})
+    .then(response => {
+   })
+    updateTest("")
+    updateCart([])
+}
+
+const inputName = (e) => {
+    let value = e.target.value;
+    updateName(value);
+}
+const inputAdress = (e) => {
+    let value = e.target.value;
+    updateAdress(value);
+    }
+    let btn;
+    if (!name || !adress){
+        btn = <button disabled="disabled" style={{width: "200px", height: "35px", fontSize: "25px"}} className="buyBtn" onClick={ConfirmBuy}>Confirm Buy</button>
+    }
+    else{
+        btn = <Link to="/done/"><button style={{width: "200px", height: "35px", fontSize: "25px"}} className="buyBtn" onClick={ConfirmBuy}>Confirm Buy</button></Link>
+    }
+   
 
 if (cart$.value.length === 0){
     return(
@@ -62,17 +98,21 @@ if (cart$.value.length === 0){
         <Meny/>
         <center>
         <br/><br/>
-        <h2>Cart:</h2>   
+        <h2>Checkout:</h2>   
         <div style={{width: "710px",border: "1px solid black"}}>{data}</div><br/>
         <div style={{width: "705px",border: "1px solid black", textAlign:"right", fontSize: "20px", paddingRight: "5px"}}><b>Total: </b>{total} kr</div>
         <br/>
-        <Link to="/cart/"><button className="navBtn" onClick={emptyCart}>Empty Cart !!</button></Link>
-        <br/><br/><br/>
-        
-        <Link to="/checkout/"><button style={{width: "200px", height: "35px", fontSize: "25px"}} className="buyBtn" >CheckOut</button></Link>
+        <br/>
+        <h3>Delivery Address:</h3>
+        <label style={{marginRight: "10px"}}>Namn: </label>
+        <input style={{padding: "3px",height: "25px", width: "300px",border: "1px solid black", borderRadius: "3px", outline: "none"}} onChange={inputName} type="text"/><br/><br/>
+        <label style={{marginRight: "5px"}}>Adress: </label>
+        <input style={{padding: "3px",height: "25px", width: "300px",border: "1px solid black", borderRadius: "3px", outline: "none"}} onChange={inputAdress} type="text"/>
+        <br/><br/><br/><br/>
+        {btn}
         </center>
         </>
     );
 }
 
-export default Cart;
+export default Checkout;

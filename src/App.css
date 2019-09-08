@@ -120,6 +120,9 @@ body{
 .buyBtn:hover{
   background: #46c557;
 }
+.buyBtn:disabled{
+  background: lightgray;
+}
 .widgetBtn{
   width: 350px;
   height: 200px;

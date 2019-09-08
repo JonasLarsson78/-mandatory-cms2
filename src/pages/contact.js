@@ -1,13 +1,18 @@
-import React from 'react';
-
+import React, {useRef} from 'react';
 import Meny from '../components/meny.js';
 import Header from '../components/header.js';
 
 
 
 const Contact = () => {
+    const inputText = useRef(null);
+    const inputTextarea = useRef(null);
     const goBack = () =>{
         window.history.back();
+    }
+    const resetForm = () =>{
+        inputText.current.value = "";
+        inputTextarea.current.value = "";
     }
 
     return(
@@ -21,13 +26,13 @@ const Contact = () => {
                             <td><h2>Contact:</h2></td>
                         </tr>
                         <tr>
-                            <td><label>Namn:</label><br/><input style={{width: "100%"}} type="text"/></td>
+                            <td><label>Namn:</label><br/><input ref={inputText} style={{width: "100%", outline: "none"}} type="text"/></td>
                         </tr>
                         <tr>
-                            <td><label>Message:</label><br/><textarea style={{width: "100%", height: "200px"}}/></td>
+                            <td><label>Message:</label><br/><textarea ref={inputTextarea} style={{width: "100%", height: "200px", outline: "none"}}/></td>
                         </tr>
                         <tr>
-                            <button className="navBtn">Send</button>
+                            <button onClick={resetForm} className="navBtn">Send</button>
                         </tr>
                         <tr>
                             <td><h3>Adress:</h3></td>

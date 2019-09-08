@@ -10,6 +10,7 @@ const ShopList = (props) => {
     const page =  props.page * 10;
 
     const [productList, updateProductlist] = useState([]);
+    const [check, updateCheck] = useState(false);
     const [max, updateMax] = useState(null);
 
     const nextList = useRef(null);
@@ -32,8 +33,14 @@ const ShopList = (props) => {
     else{
         prevList.current.disabled = "";
     }
-       
-        axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + "&limit=10&skip=" + page + "&sort[price]=1")
+    let filter = "";
+       if (check){
+           filter = "&filter[stock][$not]=0&limit=10&skip=";
+       }
+       else{
+           filter = "&limit=10&skip="
+       }
+           axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + filter + page + "&sort[price]=1")
         .then(response => {
             const length = response.data.entries.length;
            updateProductlist(response.data.entries);
@@ -46,7 +53,7 @@ const ShopList = (props) => {
             nextList.current.innerHTML = "Next Page";
            }
         })
-      }, [page, max]);
+      }, [page, max, check]);
 
 const renderShop = (data) => {
     let img = "";
@@ -96,10 +103,20 @@ const renderShop = (data) => {
        }) 
         }
        };
+       const checkbox = (e) =>{
+        let check = e.target.checked;
+        if(check){
+            updateCheck(true);
+        }
+        else{
+            updateCheck(false);
+        }
+       }
 
     return(
         <>
-            <input onChange={search} placeholder="Search..." style={{height: "20px",width: "150px",marginTop: "20px", marginLeft: "105px", outline: "none",border: "1px solid black", borderRadius: "3px"}} type="text"/>
+            <input onChange={search} placeholder="Search..." style={{height: "20px",width: "150px",marginTop: "20px", marginLeft: "105px", outline: "none",border: "1px solid black", borderRadius: "3px"}} type="text"/><br/>
+            <input style={{marginLeft: "105px",marginTop: "10px"}} onChange={checkbox} type="checkbox"/><label>In Stock</label>
             <div className="productList">
                 {data}
             </div>

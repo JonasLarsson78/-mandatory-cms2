@@ -9,7 +9,9 @@ import Done from './pages/done.js';
 import Send from './components/send.js'
 import Contact from './pages/contact.js'
 import About from './pages/about.js';
+import Checkout from './pages/checkout.js';
 import './App.css';
+
 
 
 
@@ -25,6 +27,7 @@ function App() {
       <Route path="/send/" component={Send}/>
       <Route path="/contact/" component={Contact}/>
       <Route path="/about/" component={About}/>
+      <Route path="/checkout/" component={Checkout}/>
     </Router>
   );
 }

@@ -1,9 +1,6 @@
 import React from 'react';
-
 import Meny from '../components/meny.js';
 import Header from '../components/header.js';
-
-
 
 const About = () => {
     const goBack = () =>{
