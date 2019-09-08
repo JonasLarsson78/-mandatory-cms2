@@ -1,5 +1,7 @@
 import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+
 
 import Meny from '../components/meny.js';
 import Header from '../components/header.js';
@@ -17,8 +19,13 @@ const Start = () => {
             <Header/>
             <Meny/>
             <div className="main">
-            Start
+            
             </div>
+            <center>
+                <Link to="/shop/0"><button className="widgetBtn widgetBtn1">Pizza Shop</button></Link>
+                <Link to="/cart/"><button className="widgetBtn widgetBtn2">Cart</button></Link>
+                <Link to="/contact/"><button className="widgetBtn widgetBtn3">Contact</button></Link>
+            </center>
         </HelmetProvider>
     );
 }
