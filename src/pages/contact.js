@@ -26,10 +26,10 @@ const Contact = () => {
                             <td><h2>Contact:</h2></td>
                         </tr>
                         <tr>
-                            <td><label>Namn:</label><br/><input ref={inputText} style={{width: "100%", outline: "none"}} type="text"/></td>
+                            <td><label>Namn:</label><br/><input ref={inputText} style={{width: "100%", outline: "none", border: "1px solid black"}} type="text"/></td>
                         </tr>
                         <tr>
-                            <td><label>Message:</label><br/><textarea ref={inputTextarea} style={{width: "100%", height: "200px", outline: "none"}}/></td>
+                            <td><label>Message:</label><br/><textarea ref={inputTextarea} style={{width: "100%", height: "200px", outline: "none", border: "1px solid black"}}/></td>
                         </tr>
                         <tr>
                             <button onClick={resetForm} className="navBtn">Send</button>
