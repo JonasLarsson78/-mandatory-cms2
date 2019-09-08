@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import Meny from '../components/meny.js';
 import Header from '../components/header.js';

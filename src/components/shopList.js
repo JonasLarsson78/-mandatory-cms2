@@ -46,7 +46,7 @@ const ShopList = (props) => {
             nextList.current.innerHTML = "Next Page";
            }
         })
-      }, [page]);
+      }, [page, max]);
 
 const renderShop = (data) => {
     let img = "";

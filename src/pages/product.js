@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {cart$, updateCart} from '../components/store.js';
 import Meny from '../components/meny.js';
@@ -13,7 +13,7 @@ const Product = (props) => {
     
     const [info, updateInfo] = useState([]);
     const [input, updateInput] = useState("");
-    const [test, updateTest] = useState("");
+    const [, updateTest] = useState("");
     const [name, updateName] = useState("");
 
     useEffect(() => {
@@ -32,11 +32,12 @@ const Product = (props) => {
         }
         const addToCart = () => {
             let cart = 
-                {
-                    "id": data._id,
-                    "name": data.name,
+                {   "value":{
+                    "product": data.name,
                     "price": data.price,
-                    "amount": input
+                    "aumont": input
+                }
+                    
                 };
             updateTest("test")
             updateCart([...cart$.value, cart])

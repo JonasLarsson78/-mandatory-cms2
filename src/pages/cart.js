@@ -1,6 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState} from 'react';
 import {cart$, updateCart} from '../components/store.js';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+import {API} from '../components/api.js';
 
 import Meny from '../components/meny.js';
 import Header from '../components/header.js';
@@ -11,20 +14,22 @@ import Header from '../components/header.js';
 const Cart = () => {
     
     let total = 0;
-    const [test, updateTest] = useState("");
+    const [, updateTest] = useState("");
+    const [name, updateName] = useState("");
+    const [adress, updateAdress] = useState("");
 
     
     const renderCart = (data, index) => {
-        let sum = Number(data.price) * Number(data.amount);
+        let sum = Number(data.value.price) * Number(data.value.aumont);
         total += sum;
         
         return(
             <table style={{width: "700px"}} key={index}>
                 <tbody>
                     <tr>
-                        <td><b>Product:</b> {data.name}</td>
-                        <td style={{width: "120px", textAlign: "right"}}><b>Amount:</b> {data.amount} st</td>
-                        <td style={{width: "120px", textAlign: "right"}}><b>Price:</b> {data.price} kr</td>
+                        <td><b>Product:</b> {data.value.product}</td>
+                        <td style={{width: "120px", textAlign: "right"}}><b>Amount:</b> {data.value.aumont} st</td>
+                        <td style={{width: "120px", textAlign: "right"}}><b>Price:</b> {data.value.price} kr</td>
                         <td style={{width: "120px", textAlign: "right"}}><b>Sum:</b> {sum} kr</td>
                     </tr>
                 </tbody>
@@ -33,17 +38,52 @@ const Cart = () => {
     }
     
 let data = cart$.value.map(renderCart);
+
+let order = {
+    name: name,
+    adress: adress,
+    total_price: total,
+    list: cart$.value
+
+    
+};
 const ConfirmBuy = () =>{
-    updateTest("test")
+    axios.post(API.API_ROOT + API.URL_ORDER_POST + API.TOKEN, {data: order})
+    .then(response => {
+   })
+    updateTest("")
     updateCart([])
 }
-console.log(cart$.value.length)
+
+const inputName = (e) => {
+    let value = e.target.value;
+    updateName(value);
+}
+const inputAdress = (e) => {
+    let value = e.target.value;
+    updateAdress(value);
+    }
+const emptyCart = () => {
+    updateCart([]);
+}    
+
 if (cart$.value.length === 0){
     return(
         <>
         <Header/>
         <Meny/>
-        <div>Cart is Empty!!</div>
+        <center>
+        <table>
+            <tbody>
+                <tr>
+                    <td><h2>Cart is Empty!!</h2></td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        <br/>
+        <Link to="/shop/0"><button className="navBtn">Back to Shop</button></Link>
+        </center>
         </>
     )
 }
@@ -54,10 +94,18 @@ if (cart$.value.length === 0){
         <center>
         <br/><br/>
         <h2>Cart:</h2>   
-        <div style={{width: "710px",border: "1px solid black"}}>{data}</div>
+        <div style={{width: "710px",border: "1px solid black"}}>{data}</div><br/>
         <div style={{width: "705px",border: "1px solid black", textAlign:"right", fontSize: "20px", paddingRight: "5px"}}><b>Total: </b>{total} kr</div>
         <br/>
-        <Link to="/done/"><button onClick={ConfirmBuy}>Confirm Buy</button></Link>
+        <Link to="/cart/"><button className="navBtn" onClick={emptyCart}>Empty Cart !!</button></Link>
+        <br/>
+        <h3>Delivery Address:</h3>
+        <label style={{marginRight: "10px"}}>Namn: </label>
+        <input style={{padding: "3px",height: "25px", width: "300px",border: "1px solid black", borderRadius: "3px", outline: "none"}} onChange={inputName} type="text"/><br/><br/>
+        <label style={{marginRight: "5px"}}>Adress: </label>
+        <input style={{padding: "3px",height: "25px", width: "300px",border: "1px solid black", borderRadius: "3px", outline: "none"}} onChange={inputAdress} type="text"/>
+        <br/><br/><br/><br/>
+        <Link to="/done/"><button style={{width: "200px", height: "35px", fontSize: "25px"}} className="buyBtn" onClick={ConfirmBuy}>Confirm Buy</button></Link>
         </center>
         </>
     );
