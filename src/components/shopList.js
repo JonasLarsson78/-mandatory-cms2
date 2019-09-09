@@ -65,7 +65,7 @@ const renderShop = (data) => {
     
     
     return(
-        <table style={{padding: "20px"}} key={data._id}>
+        <table style={{padding: "15px"}} key={data._id}>
             <tbody>
                 <tr>
                     <td><img alt="img" style={{width: "220px",border: "1px solid gray", borderRadius: "3px"}} src={img}/></td>
@@ -74,7 +74,7 @@ const renderShop = (data) => {
                     <td className="pizzaLink"><Link to={"/product/" + data._id}>{data.name}</Link></td>
                 </tr>
                 <tr>
-                    <td>{data.price} Kr</td>
+                    <td>{data.price} Kr <Link to={"/product/" + data._id}><button style={{height:"20px", width: "50px"}} className="buyBtn">Buy</button></Link></td>
                 </tr>
                 
             </tbody>
@@ -114,8 +114,8 @@ const renderShop = (data) => {
 
     return(
         <>
-            <input onChange={search} placeholder="Search..." style={{height: "20px",width: "150px",marginTop: "20px", marginLeft: "105px", outline: "none",border: "1px solid black", borderRadius: "3px"}} type="text"/><br/>
-            <input style={{marginLeft: "105px",marginTop: "10px"}} onChange={checkbox} type="checkbox"/><label>In Stock</label>
+            <input onChange={search} placeholder="Search..." style={{height: "20px",width: "150px",marginTop: "20px", marginLeft: "120px", outline: "none",border: "1px solid black", borderRadius: "3px"}} type="text"/><br/>
+            <input style={{marginLeft: "120px",marginTop: "10px"}} onChange={checkbox} type="checkbox"/><label>In Stock</label>
             <div className="productList">
                 {data}
             </div>

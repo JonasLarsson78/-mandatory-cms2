@@ -118,7 +118,7 @@ body{
   cursor: pointer;
 }
 .buyBtn:hover{
-  background: #46c557;
+  background: #68c274;
 }
 .buyBtn:disabled{
   background: lightgray;
