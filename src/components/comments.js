@@ -31,7 +31,7 @@ const renderRev = (data) => {
                     <td style={{fontSize: "12px"}}>{data.body}</td>
                 </tr>
                 <tr>
-                    <td><Rater style={{display: "flex"}} total={5} interactive={false} rating={data.rating}/></td>
+                    <td><Rater style={{display: "flex"}} total={5} interactive={false} rating={Number(data.rating)}/></td>
                 </tr>
             </tbody>
         </table>

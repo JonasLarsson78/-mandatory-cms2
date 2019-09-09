@@ -32,7 +32,9 @@ const Contact = () => {
                             <td><label>Message:</label><br/><textarea ref={inputTextarea} style={{width: "100%", height: "200px", outline: "none", border: "1px solid black"}}/></td>
                         </tr>
                         <tr>
-                            <button onClick={resetForm} className="navBtn">Send</button>
+                            <td>
+                                <button onClick={resetForm} className="navBtn">Send</button>
+                            </td>
                         </tr>
                         <tr>
                             <td><h3>Adress:</h3></td>

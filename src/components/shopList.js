@@ -26,7 +26,6 @@ const ShopList = (props) => {
 
     
    useEffect(() => {
-    console.log(page)
     if(page === 0){
         prevList.current.disabled = "disabled";
     }
