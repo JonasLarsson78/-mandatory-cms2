@@ -23,13 +23,13 @@ const Contact = () => {
                 <table style={{width: "700px"}}>
                     <tbody>
                         <tr>
-                            <td><h2>Contact:</h2></td>
+                            <td><h2 style={{color: "#db3131"}}>Contact:</h2></td>
                         </tr>
                         <tr>
-                            <td><label>Namn:</label><br/><input ref={inputText} style={{width: "100%", outline: "none", border: "1px solid black"}} type="text"/></td>
+                            <td><label>Namn:</label><br/><input ref={inputText} style={{width: "100%", outline: "none", border: "1px solid black", borderRadius: "3px"}} type="text"/></td>
                         </tr>
                         <tr>
-                            <td><label>Message:</label><br/><textarea ref={inputTextarea} style={{width: "100%", height: "200px", outline: "none", border: "1px solid black"}}/></td>
+                            <td><label>Message:</label><br/><textarea ref={inputTextarea} style={{width: "99.5%", height: "200px", outline: "none", border: "1px solid black", borderRadius: "3px"}}/></td>
                         </tr>
                         <tr>
                             <td>

@@ -15,7 +15,7 @@ const About = () => {
                 <table style={{width: "700px"}}>
                     <tbody>
                         <tr>
-                            <td><h2>About:</h2></td>
+                            <td><h2 style={{color: "#db3131"}}>About:</h2></td>
                         </tr>
                         <tr>
                             <td>
