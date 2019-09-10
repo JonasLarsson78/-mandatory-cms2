@@ -81,7 +81,7 @@ const Product = (props) => {
                     </tr>
                     <tr>
                         <td>
-                        <input defaultValue="1" min="1" max="10" style={{width: "60px"}} onChange={onChange} type="number"/>
+                        <input defaultValue={data.stock === "0" ? 0 : 1} min="1" max="10" style={{width: "60px"}} onChange={onChange} type="number"/>
                         {buyBtn}
                         </td>
                     </tr>
