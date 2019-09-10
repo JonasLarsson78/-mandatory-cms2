@@ -19,12 +19,9 @@ const Admin = () => {
             return(
                 <div key={index}>
                 <br/>
-                
                 <div>{list.value.product}</div>
                 <div>{list.value.price} kr</div>
                 <div>{list.value.aumont} st</div>
-                <br/>
-                
                 </div>
             )
         }
