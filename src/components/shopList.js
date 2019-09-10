@@ -74,7 +74,7 @@ const renderShop = (data) => {
                     <td className="pizzaLink"><Link to={"/product/" + data._id}>{data.name}</Link></td>
                 </tr>
                 <tr>
-                    <td>{data.price} Kr <Link to={"/product/" + data._id}><button style={{height:"20px", width: "50px"}} className="buyBtn">Buy</button></Link></td>
+                    <td>{data.price} Kr <Link to={"/product/" + data._id}><button style={{height:"20px", width: "50px",position: "relative", top: "-2px"}} className="buyBtn">Buy</button></Link></td>
                 </tr>
                 
             </tbody>

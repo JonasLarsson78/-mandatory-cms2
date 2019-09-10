@@ -52,7 +52,14 @@ const Product = (props) => {
               );
             }
       
-          let gallery = data.gallery.map(renderGallery)
+          let gallery = data.gallery.map(renderGallery);
+          let buyBtn;
+          if (data.stock === "0"){
+              buyBtn = <button title="0 in stock" className="buyBtn" disabled="disabled" onClick={addToCart}>Buy</button>
+          }
+          else{
+            buyBtn = <button className="buyBtn" onClick={addToCart}>Buy</button>
+          }
 
         return(
             <table style={{width: "700px", marginTop: "5px"}}key={data._id}>
@@ -75,7 +82,7 @@ const Product = (props) => {
                     <tr>
                         <td>
                         <input defaultValue="1" min="1" max="10" style={{width: "60px"}} onChange={onChange} type="number"/>
-                        <button className="buyBtn" onClick={addToCart}>Buy</button>
+                        {buyBtn}
                         </td>
                     </tr>
                     <tr>
