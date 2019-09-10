@@ -64,13 +64,13 @@ else{
                         <td><h2>Comment:</h2></td>
                     </tr>
                     <tr>
-                        <td><label>Title:</label><br/><input style={{width: "100%", outline: "none"}} onChange={text} type="text"/></td>
+                        <td><label>Title:</label><br/><input placeholder="Titel..." style={{width: "100%", outline: "none", border: "1px solid black", borderRadius: "3px"}} onChange={text} type="text"/></td>
                     </tr>
                     <tr>
-                        <td><label>Comment:</label><br/><textarea style={{width: "100%", height: "200px", outline: "none"}} onChange={textarea}></textarea></td>
+                        <td><label>Comment:</label><br/><textarea placeholder="Comments..." style={{width: "100%", height: "200px", outline: "none", border: "1px solid black", borderRadius: "3px"}} onChange={textarea}></textarea></td>
                     </tr>
                     <tr>
-                        <td><input style={{width: "100%"}} onChange={rate} type="range" step="1" min="0" max="5"/><center><Rater style={{display: "flex", justifyContent: "center"}} total={5} interactive={false} rating={rateInput}/></center></td>
+                        <td><input style={{width: "100%"}} onChange={rate} type="range" step="1" min="0" max="5"/><center><Rater style={{display: "flex", justifyContent: "center"}} total={5} interactive={false} rating={Number(rateInput)}/></center></td>
                     </tr>
                     <tr>
                         <td>
