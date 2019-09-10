@@ -13,7 +13,10 @@ const Cart = () => {
     let total = 0;
     
     const renderCart = (data, index) => {
+        if (data.value.aumont === "")
+        data.value.aumont = "1";
         let sum = Number(data.value.price) * Number(data.value.aumont);
+        
         total += sum;
         
         return(
