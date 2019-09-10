@@ -10,6 +10,7 @@ import Send from './components/send.js'
 import Contact from './pages/contact.js'
 import About from './pages/about.js';
 import Checkout from './pages/checkout.js';
+import SendForm from './pages/send_form.js';
 import './App.css';
 
 
@@ -28,6 +29,7 @@ function App() {
       <Route path="/contact/" component={Contact}/>
       <Route path="/about/" component={About}/>
       <Route path="/checkout/" component={Checkout}/>
+      <Route path="/sendform/" component={SendForm}/>
     </Router>
   );
 }
