@@ -11,10 +11,9 @@ import Contact from './pages/contact.js'
 import About from './pages/about.js';
 import Checkout from './pages/checkout.js';
 import SendForm from './pages/send_form.js';
+import Admin from './pages/admin.js';
+
 import './App.css';
-
-
-
 
 
 function App() {
@@ -30,6 +29,7 @@ function App() {
       <Route path="/about/" component={About}/>
       <Route path="/checkout/" component={Checkout}/>
       <Route path="/sendform/" component={SendForm}/>
+      <Route path="/admin/" component={Admin}/>
     </Router>
   );
 }
