@@ -62,7 +62,6 @@ const Contact = () => {
     if (redirect){
         return <Redirect to={{pathname: '/sendform/', state: { redirect }}}/>
     }
-    console.log(redirect)
     return(
         <>
             <Header/>
