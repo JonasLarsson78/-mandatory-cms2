@@ -15,6 +15,7 @@ const ShopList = (props) => {
 
     const nextList = useRef(null);
     const prevList = useRef(null);
+    const searchValue = useRef(null);
 
     useEffect(() => {
 
@@ -89,9 +90,11 @@ const renderShop = (data) => {
     const search = (e) =>{
         let input = e.target.value;
         if (!input){
-            axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + "&limit=10&skip=" + page)
+            axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + "&limit=10&skip=0&sort[price]=1")
         .then(response => {
-           updateProductlist(response.data.entries)
+           updateProductlist(response.data.entries);
+           nextList.current.style.opacity = "1";
+           prevList.current.style.opacity = "1";
         })
         }
         else{
@@ -99,6 +102,8 @@ const renderShop = (data) => {
         .then(response => {
             
            updateProductlist(response.data.entries);
+           nextList.current.style.opacity = "0";
+           prevList.current.style.opacity = "0";
        }) 
         }
        };
@@ -111,10 +116,11 @@ const renderShop = (data) => {
             updateCheck(false);
         }
        }
+      
 
     return(
         <>
-            <input onChange={search} placeholder="Search..." style={{height: "20px",width: "150px",marginTop: "20px", marginLeft: "120px", outline: "none",border: "1px solid black", borderRadius: "3px"}} type="text"/><br/>
+            <input ref={searchValue} onChange={search} placeholder="Search..." style={{height: "20px",width: "150px",marginTop: "20px", marginLeft: "120px", outline: "none",border: "1px solid black", borderRadius: "3px"}} type="text"/><br/>
             <input style={{marginLeft: "120px",marginTop: "10px"}} onChange={checkbox} type="checkbox"/><label>In Stock</label>
             <div className="productList">
                 {data}
