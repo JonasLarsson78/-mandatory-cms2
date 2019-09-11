@@ -13,7 +13,7 @@ const Product = (props) => {
     const id =  props.match.params.id;
     
     const [info, updateInfo] = useState([]);
-    const [input, updateInput] = useState("");
+    const [input, updateInput] = useState("1");
     const [, updateTest] = useState("");
     const [name, updateName] = useState("");
 
