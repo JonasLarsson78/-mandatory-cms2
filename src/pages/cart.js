@@ -11,10 +11,6 @@ import Header from '../components/header.js';
 const Cart = () => {
     
     let total = 0;
-
-    
-    
-    
     
     const renderCart = (data, index) => {
         if (data.value.aumont === ""){

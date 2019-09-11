@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 export const cart$ = new BehaviorSubject(JSON.parse(window.localStorage.getItem("cart") || "[]"));
 
 export function updateCart(newCart) {
-  
+  console.log(newCart)
   let arr = [...newCart]
   let result = arr.reduce(function(acc, val){
       let o = acc.filter(function(obj){
