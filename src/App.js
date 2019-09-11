@@ -12,15 +12,17 @@ import About from './pages/about.js';
 import Checkout from './pages/checkout.js';
 import SendForm from './pages/send_form.js';
 import Admin from './pages/admin.js';
-
+import Drink from './pages/drink.js';
 import './App.css';
+
 
 
 function App() {
   return (
     <Router>
       <Route exact path="/" component={Start}/>
-      <Route path="/shop/:page" component={Shop}/>  
+      <Route path="/shop/:page" component={Shop}/>
+      <Route path="/drink/:page" component={Drink}/>   
       <Route path="/product/:id" component={Product}/>
       <Route path="/cart/" component={Cart}/>
       <Route path="/done/" component={Done}/>

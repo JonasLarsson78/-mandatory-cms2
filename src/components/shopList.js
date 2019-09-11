@@ -35,10 +35,10 @@ const ShopList = (props) => {
     }
     let filter = "";
        if (check){
-           filter = "&filter[stock][$not]=0&limit=10&skip=";
+           filter = "&filter[stock][$not]=0&filter[price][$not]=10&limit=10&skip=";
        }
        else{
-           filter = "&limit=10&skip="
+           filter = "&filter[price][$not]=10&limit=10&skip="
        }
            axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + filter + page + "&sort[price]=1")
         .then(response => {
