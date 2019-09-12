@@ -90,7 +90,7 @@ const renderShop = (data) => {
     const search = (e) =>{
         let input = e.target.value;
         if (!input){
-            axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + "&limit=10&skip=0&sort[price]=1")
+            axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + "&filter[category][$regex]=Pizza&limit=10&skip=0&sort[price]=1")
         .then(response => {
            updateProductlist(response.data.entries);
            nextList.current.style.opacity = "1";
