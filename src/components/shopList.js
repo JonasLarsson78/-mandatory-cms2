@@ -11,7 +11,7 @@ const ShopList = (props) => {
 
     const [productList, updateProductlist] = useState([]);
     const [check, updateCheck] = useState(false);
-    const [max, updateMax] = useState(null);
+    const [max, updateMax] = useState(0);
 
     const nextList = useRef(null);
     const prevList = useRef(null);
@@ -19,7 +19,7 @@ const ShopList = (props) => {
 
     useEffect(() => {
 
-        axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN)
+        axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + "&filter[category][$regex]=Pizza")
         .then(response => {
            updateMax(response.data.entries.length);
        })
