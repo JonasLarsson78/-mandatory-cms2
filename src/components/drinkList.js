@@ -25,7 +25,7 @@ const ShopList = (props) => {
    useEffect(() => {
    
     
-           axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + "&limit=10&skip=" + page + "&filter[name][$regex]=Drink")
+           axios.get(API.API_ROOT + API.URL_PRODUKTER + API.TOKEN + "&limit=10&skip=" + page + "&filter[category][$regex]=Drink")
         .then(response => {
            updateProductlist(response.data.entries);
            
