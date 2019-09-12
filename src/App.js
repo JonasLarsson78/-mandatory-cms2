@@ -19,7 +19,7 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/-mandatory-cms2">
       <Route exact path="/" component={Start}/>
       <Route path="/shop/:page" component={Shop}/>
       <Route path="/drink/:page" component={Drink}/>   
