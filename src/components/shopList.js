@@ -35,7 +35,7 @@ const ShopList = (props) => {
     }
     let filter = "";
        if (check){
-           filter = "&filter[category][$regex]=Pizza&filter[price][$not]=10&limit=10&skip=";
+           filter = "&filter[category][$regex]=Pizza&filter[stock][$not]=0&limit=10&skip=";
        }
        else{
            filter = "&filter[category][$regex]=Pizza&limit=10&skip="
